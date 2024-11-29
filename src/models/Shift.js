@@ -14,12 +14,10 @@ const shiftSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
-  actualStartTime: {
-    type: Date,
-  },
-  actualEndTime: {
-    type: Date,
-  },
+  hoursWorked: {
+    type: Number,
+    default: 0,
+  }
 });
 
 module.exports = mongoose.model('Shift', shiftSchema);

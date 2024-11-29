@@ -5,14 +5,21 @@ const employeeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  role: {
+  position: {
     type: String,
     required: true,
   },
-  schedule: {
+  phone: {
     type: String,
     required: true,
   },
+  yearOfBirth: { type: Number, required: true },
+  startedDate: {type: Date, required: true },
+  schedule: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Shift',
+    required: true,
+  }],
   hourlyRate: {
     type: Number,
     required: true,
