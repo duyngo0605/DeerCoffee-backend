@@ -6,6 +6,6 @@ const { authMiddleWare, authUserMiddleWare } = require("../middleware/authMiddle
 router.post('', EmployeeController.createEmployee)
 router.put('/:id', authUserMiddleWare, EmployeeController.updateEmployee)
 router.delete('/:id', authMiddleWare, EmployeeController.deleteEmployee)
-router.get('/:id', authMiddleWare, EmployeeController.getEmployee)
+router.get('/:id?', authMiddleWare, EmployeeController.getEmployee)
 
 module.exports = router

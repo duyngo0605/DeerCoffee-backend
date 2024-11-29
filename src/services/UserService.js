@@ -61,12 +61,12 @@ const loginUser = async (loginModel) => {
             { 
                 const access_token = await generalAccessToken({
                     id: checkUser.id,
-                    isAdmin: checkUser.isAdmin
+                    role: checkUser.role
                 })
     
                 const refresh_token = await generalRefreshToken({
                     id: checkUser.id,
-                    isAdmin: checkUser.isAdmin
+                    role: checkUser.role
                 })
             resolve({
                 status: 'OK',
@@ -94,7 +94,7 @@ const loginUser = async (loginModel) => {
 const getUser = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
-            if (!id) {
+            if (!id) {console.log('debug')
                 const allUser = await User.find()
                 resolve({
                     status: 'OK',
