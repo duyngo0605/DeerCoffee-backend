@@ -43,14 +43,16 @@ const createUser = async (newUser) => {
 const loginUser = async (loginModel) => {
     return new Promise(async (resolve, reject) => {
 
+
         const { username, password} = loginModel
+        console.log(username, password)
         try {
             const checkUser = await User.findOne({
                 username: username
             })
 
             if (!checkUser){
-                resolve({
+                reject({
                     status: 'ERR',
                     message: 'The user is not defined.'
                 })
@@ -77,7 +79,7 @@ const loginUser = async (loginModel) => {
             }
             else
             {
-                resolve({
+                reject({
                     status: 'ERR',
                     message: 'The password is not correct.'
                 })

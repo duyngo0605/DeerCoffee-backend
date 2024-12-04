@@ -1,0 +1,52 @@
+@startuml Restaurant Management System
+
+class User {
+  +username: String
+  +password: String
+  +role: String
+}
+
+class Employee {
+  +name: String
+  +position: String
+  +phone: String
+  +yearOfBirth: Number
+  +startedDate: Date
+  +hourlyRate: Number
+}
+
+class Shift {
+  +scheduledStartTime: Date
+  +scheduledEndTime: Date
+  +hoursWorked: Number
+}
+
+class MenuItem {
+  +name: String
+  +price: Number
+  +description: String
+}
+
+class Order {
+  +table: Number
+  +totalAmount: Number
+  +orderDate: Date
+}
+
+class Reservation {
+  +reservationDate: Date
+  +numberOfPeople: Number
+  +phoneNumber: Number
+  +customerName: String
+}
+
+Employee "1" -- "*" Shift : has
+Order "*" -- "*" MenuItem : contains
+
+note right of User
+  Roles can be:
+  - staff
+  - admin
+end note
+
+@enduml
