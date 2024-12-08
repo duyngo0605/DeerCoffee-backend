@@ -9,7 +9,13 @@ const menuItemSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  image: {type: String},
   description: String,
+  itemType: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'ItemType',
+    required: true
+  }
 });
 
 module.exports = mongoose.model('MenuItem', menuItemSchema);
