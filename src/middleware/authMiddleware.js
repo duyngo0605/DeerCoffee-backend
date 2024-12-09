@@ -12,7 +12,6 @@ const authMiddleWare = (req, res, next) => {
             })
         }
         if (user?.role === 'admin') {
-            console.log('auth mid')
             next()
         } else {
             return res.status(404).json({

@@ -1,10 +1,10 @@
 const express = require("express")
 const router = express.Router()
 const EmployeeController = require('../controllers/EmployeeController')
-const { authMiddleWare, authUserMiddleWare } = require("../middleware/authMiddleware");
+const { authMiddleWare } = require("../middleware/authMiddleware");
 
-router.post('', EmployeeController.createEmployee)
-router.put('/:id', authUserMiddleWare, EmployeeController.updateEmployee)
+router.post('', authMiddleWare, EmployeeController.createEmployee)
+router.put('/:id', authMiddleWare, EmployeeController.updateEmployee)
 router.delete('/:id', authMiddleWare, EmployeeController.deleteEmployee)
 router.get('/:id?', authMiddleWare, EmployeeController.getEmployee)
 

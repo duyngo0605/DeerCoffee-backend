@@ -3,6 +3,7 @@ const ItemType = require('../models/ItemType')
 const createItemType = async (newItemType) => {
     return new Promise(async (resolve, reject) => {
         try {
+            console.log(newItemType)
             const createdItemType = await ItemType.create(newItemType)
             if (createdItemType)
             { 

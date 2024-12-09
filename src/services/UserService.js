@@ -63,11 +63,13 @@ const loginUser = async (loginModel) => {
             { 
                 const access_token = await generalAccessToken({
                     id: checkUser.id,
+                    username: checkUser.username,
                     role: checkUser.role
                 })
     
                 const refresh_token = await generalRefreshToken({
                     id: checkUser.id,
+                    username: checkUser.username,
                     role: checkUser.role
                 })
             resolve({
