@@ -10,7 +10,6 @@ const menuItemSchema = new mongoose.Schema({
     required: true,
   },
   image: {type: String},
-  description: String,
   itemType: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'ItemType',

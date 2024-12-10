@@ -1,4 +1,5 @@
 const ItemType = require('../models/ItemType')
+const MenuItem = require('../models/MenuItem')
 
 const createItemType = async (newItemType) => {
     return new Promise(async (resolve, reject) => {
@@ -34,19 +35,26 @@ const getItemType = (id) => {
                 })
             }
             else {
-                const ItemType = await ItemType.findOne({
+                const itemType = await ItemType.findOne({
                     _id: id
                 })
-                if (ItemType === null) {
+                if (itemType === null) {
                     resolve({
                         status: 'ERR',
                         message: 'The ItemType is not defined'
                     })
                 }
+                
+
+                const menuItems = await MenuItem.find({ itemType: id })
+                
                 resolve({
                     status: 'OK',
                     message: 'SUCCESS',
-                    data: ItemType
+                    data: {
+                        itemType: itemType,
+                        menuItems: menuItems
+                    }
                 })
             }
         } catch (e) {
