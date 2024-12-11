@@ -3,7 +3,7 @@
 class User {
   +username: String
   +password: String
-  +role: String
+  +role: String []
 }
 
 class Employee {
@@ -12,10 +12,12 @@ class Employee {
   +phone: String
   +yearOfBirth: Number
   +startedDate: Date
+  +schedule: Shift[]
   +hourlyRate: Number
 }
 
 class Shift {
+  +employee: Employee
   +scheduledStartTime: Date
   +scheduledEndTime: Date
   +hoursWorked: Number
@@ -24,8 +26,8 @@ class Shift {
 class MenuItem {
   +name: String
   +price: Number
-  +description: String
   +image: String
+  +itemType: ItemType
 }
 
 class ItemType {
@@ -34,8 +36,10 @@ class ItemType {
 
 class Order {
   +table: Number
+  +items: MenuItem[]
   +totalAmount: Number
   +orderDate: Date
+  +status: String []
 }
 
 class Reservation {
@@ -45,15 +49,23 @@ class Reservation {
   +customerName: String
 }
 
-Employee "1" -- "*" Shift : has
-Shift "*" -- "1" Employee : belongs to
-Order "*" -- "*" MenuItem : contains
-MenuItem "*" -- "1" ItemType : has type
+' Relationships with references
+Employee "1" *-- "*" Shift : has schedule >
+Shift "*" --* "1" Employee : belongs to >
+Order "*" --* "*" MenuItem : contains >
+MenuItem "*" --* "1" ItemType : has type >
 
 note right of User
   Roles can be:
   - staff
   - admin
+end note
+
+note right of Order
+  Status can be:
+  - pending
+  - completed
+  - cancelled
 end note
 
 @enduml
