@@ -1,4 +1,5 @@
 const Employee = require('../models/Employee')
+const Shift = require('../models/Shift')
 
 const createEmployee = async (newEmployee) => {
     return new Promise(async (resolve, reject) => {
@@ -94,7 +95,7 @@ const deleteEmployee = (id) => {
                     message: 'The Employee is not defined'
                 })
             }
-
+            await Shift.deleteMany({employee: id})
             await Employee.findByIdAndDelete(id)
             resolve({
                 status: 'OK',
