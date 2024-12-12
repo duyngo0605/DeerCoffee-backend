@@ -25,7 +25,7 @@ const getShift = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
             if (!id) {
-                const allShift = await Shift.find()
+                const allShift = await Shift.find().populate('employee')
                 resolve({
                     status: 'OK',
                     message: 'Success',
