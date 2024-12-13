@@ -16,8 +16,11 @@ const reservationSchema = new mongoose.Schema({
   customerName: {
     type: String,
     required: true,
+  },
+  notes: {
+    type: String,
+    required: false,
   }
-  
 });
 
 module.exports = mongoose.model('Reservation', reservationSchema);

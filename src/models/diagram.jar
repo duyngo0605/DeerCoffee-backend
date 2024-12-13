@@ -49,6 +49,13 @@ class Reservation {
   +customerName: String
 }
 
+class Voucher {
+  +code: String
+  +discount: Number
+  +startDate: Date
+  +expiryDate: Date
+}
+
 ' Relationships with references
 Employee "1" *-- "*" Shift : has schedule >
 Shift "*" --* "1" Employee : belongs to >
