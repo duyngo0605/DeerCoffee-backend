@@ -25,7 +25,7 @@ const getOrder = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
             if (!id) {
-                const allOrder = await Order.find()
+                const allOrder = await Order.find().populate('voucher')
                 resolve({
                     status: 'OK',
                     message: 'Success',

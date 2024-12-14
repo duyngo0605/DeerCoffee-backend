@@ -33,6 +33,10 @@ const orderSchema = new mongoose.Schema({
     default: 'pending',
     required: true,
   },
+  voucher: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: false,
+  }
 });
 
 module.exports = mongoose.model('Order', orderSchema);
