@@ -35,6 +35,7 @@ const orderSchema = new mongoose.Schema({
   },
   voucher: {
     type: mongoose.Schema.Types.ObjectId,
+    ref: 'Voucher',
     required: false,
   }
 });
