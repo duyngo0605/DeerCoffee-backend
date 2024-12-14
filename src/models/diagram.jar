@@ -52,6 +52,7 @@ class Reservation {
 class Voucher {
   +code: String
   +discount: Number
+  +description: String
   +startDate: Date
   +expiryDate: Date
 }
