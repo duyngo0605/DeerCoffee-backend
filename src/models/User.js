@@ -15,6 +15,10 @@ const userSchema = new mongoose.Schema({
     enum: ['staff', 'admin'],
     required: true,
   },
+  employee: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Employee',
+  },
 });
 
 module.exports = mongoose.model('User', userSchema);

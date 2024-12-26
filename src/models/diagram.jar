@@ -47,6 +47,7 @@ class Reservation {
   +numberOfPeople: Number
   +phoneNumber: Number
   +customerName: String
+  +notes: String
 }
 
 class Voucher {
