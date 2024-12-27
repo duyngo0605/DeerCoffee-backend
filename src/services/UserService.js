@@ -99,7 +99,7 @@ const getUser = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
             if (!id) {console.log('debug')
-                const allUser = await User.find()
+                const allUser = await User.find().populate('employee')
                 resolve({
                     status: 'OK',
                     message: 'Success',

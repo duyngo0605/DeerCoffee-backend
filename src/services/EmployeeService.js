@@ -107,9 +107,45 @@ const deleteEmployee = (id) => {
     })
 }
 
+const calculateSalary = (id, data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const checkEmployee = await Employee.findOne({
+                _id: id
+            }).populate('schedule')
+            if (checkEmployee === null) {
+                resolve({
+                    status: 'ERR',
+                    message: 'The Employee is not defined'
+                })
+            }
+            console.log(checkEmployee)
+            let salary = 0;
+            const startTime = new Date(data.startTime)
+            const endTime = new Date(data.endTime)
+            checkEmployee.schedule.forEach((shift)=> {
+                console.log(shift)
+                if (shift.scheduledStartTime >= startTime && shift.scheduledEndTime <= endTime)
+                {    
+                    salary += shift.hoursWorked * checkEmployee.hourlyRate;
+                }
+            });
+            console.log(data)
+            resolve({
+                status: 'OK',
+                message: "Calculate Employee's salary success",
+                data: salary
+            })
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
 module.exports = {
     createEmployee,
     getEmployee,
     updateEmployee,
     deleteEmployee,
+    calculateSalary,
 }

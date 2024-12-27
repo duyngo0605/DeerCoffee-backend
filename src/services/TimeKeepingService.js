@@ -1,19 +1,15 @@
-const Shift = require('../models/Shift')
-const Employee = require('../models/Employee')
+const TimeKeeping = require('../models/TimeKeeping')
 
-const createShift = async (newShift) => {
+const createTimeKeeping = async (newTimeKeeping) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const createdShift = await Shift.create(newShift)
-            if (createdShift)
+            const createdTimeKeeping = await TimeKeeping.create(newTimeKeeping)
+            if (createdTimeKeeping)
             { 
-            const employee = await Employee.findById(newShift.employee);
-            employee.schedule.push(createdShift._id);
-            await employee.save();
             resolve({
                 status: 'OK',
                 message: 'SUCCESS',
-                data: createdShift
+                data: createdTimeKeeping
             })
             }
         }
@@ -25,31 +21,31 @@ const createShift = async (newShift) => {
 }
 
 
-const getShift = (id) => {
+const getTimeKeeping = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
             if (!id) {
-                const allShift = await Shift.find().populate('employee')
+                const allTimeKeeping = await TimeKeeping.find().populate('employee')
                 resolve({
                     status: 'OK',
                     message: 'Success',
-                    data: allShift
+                    data: allTimeKeeping
                 })
             }
             else {
-                const Shift = await Shift.findOne({
+                const TimeKeeping = await TimeKeeping.findOne({
                     _id: id
                 })
-                if (Shift === null) {
+                if (TimeKeeping === null) {
                     resolve({
                         status: 'ERR',
-                        message: 'The Shift is not defined'
+                        message: 'The TimeKeeping is not defined'
                     })
                 }
                 resolve({
                     status: 'OK',
                     message: 'SUCCESS',
-                    data: Shift
+                    data: TimeKeeping
                 })
             }
         } catch (e) {
@@ -58,25 +54,25 @@ const getShift = (id) => {
     })
 }
 
-const updateShift = async (ShiftId, data) => {
+const updateTimeKeeping = async (TimeKeepingId, data) => {
     return new Promise(async (resolve, reject) => {
 
         try {
-            const checkShift = await Shift.findOne({
-                _id: ShiftId
+            const checkTimeKeeping = await TimeKeeping.findOne({
+                _id: TimeKeepingId
             })
-            if (!checkShift){
+            if (!checkTimeKeeping){
                 resolve({
                     status: 'ERR',
-                    message: 'The Shift is not defined.'
+                    message: 'The TimeKeeping is not defined.'
                 })
             }
 
-            const updatedShift = await Shift.findByIdAndUpdate(ShiftId, data, {new: true})
+            const updatedTimeKeeping = await TimeKeeping.findByIdAndUpdate(TimeKeepingId, data, {new: true})
             resolve({
                 status: 'OK',
                 message: 'SUCCESS',
-                data: updatedShift
+                data: updatedTimeKeeping
             })
         }
 
@@ -86,23 +82,23 @@ const updateShift = async (ShiftId, data) => {
     })
 }
 
-const deleteShift = (id) => {
+const deleteTimeKeeping = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const checkShift = await Shift.findOne({
+            const checkTimeKeeping = await TimeKeeping.findOne({
                 _id: id
             })
-            if (checkShift === null) {
+            if (checkTimeKeeping === null) {
                 resolve({
                     status: 'ERR',
-                    message: 'The Shift is not defined'
+                    message: 'The TimeKeeping is not defined'
                 })
             }
 
-            await Shift.findByIdAndDelete(id)
+            await TimeKeeping.findByIdAndDelete(id)
             resolve({
                 status: 'OK',
-                message: 'Delete Shift success',
+                message: 'Delete TimeKeeping success',
             })
         } catch (e) {
             reject(e)
@@ -110,11 +106,9 @@ const deleteShift = (id) => {
     })
 }
 
-
-
 module.exports = {
-    createShift,
-    getShift,
-    updateShift,
-    deleteShift,
+    createTimeKeeping,
+    getTimeKeeping,
+    updateTimeKeeping,
+    deleteTimeKeeping,
 }
