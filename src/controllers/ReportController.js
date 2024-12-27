@@ -34,8 +34,44 @@ const getRevenueByYear = async (req, res) => {
         }
 }
 
+const getMostOrderedMenuItemsByDay = async (req, res) => {
+    try {
+        const response = await ReportService.getMostOrderedMenuItemsByDay(req.body);
+        return res.status(200).json(response);
+    } catch (e) {
+        return res.status(404).json({
+            message: e
+        });
+    }
+};
+
+const getMostOrderedMenuItemsByMonth = async (req, res) => {
+    try {
+        const response = await ReportService.getMostOrderedMenuItemsByMonth(req.body);
+        return res.status(200).json(response);
+    } catch (e) {
+        return res.status(404).json({
+            message: e
+        });
+    }
+};
+
+const getMostOrderedMenuItemsByYear = async (req, res) => {
+    try {
+        const response = await ReportService.getMostOrderedMenuItemsByYear(req.body);
+        return res.status(200).json(response);
+    } catch (e) {
+        return res.status(404).json({
+            message: e
+        });
+    }
+};
+
 module.exports = {
     getRevenueByDay,
     getRevenueByMonth,
-    getRevenueByYear
-}
+    getRevenueByYear,
+    getMostOrderedMenuItemsByDay,
+    getMostOrderedMenuItemsByMonth,
+    getMostOrderedMenuItemsByYear
+};
