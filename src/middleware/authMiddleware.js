@@ -33,7 +33,7 @@ const authUserMiddleWare = (req, res, next) => {
                 status: 'ERROR'
             })
         }
-        if (user?.role === 'admin' || user?.id === userId) {
+        if (user?.role === 'admin' || user?.role === 'staff') {
             next()
         } else {
             return res.status(404).json({

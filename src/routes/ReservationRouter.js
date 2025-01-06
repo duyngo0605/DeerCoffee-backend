@@ -3,9 +3,9 @@ const router = express.Router()
 const ReservationController = require('../controllers/ReservationController')
 const { authMiddleWare, authUserMiddleWare } = require("../middleware/authMiddleware");
 
-router.post('', authMiddleWare, ReservationController.createReservation)
+router.post('', authUserMiddleWare, ReservationController.createReservation)
 router.put('/:id', authUserMiddleWare, ReservationController.updateReservation)
-router.delete('/:id', authMiddleWare, ReservationController.deleteReservation)
-router.get('/:id?', authMiddleWare, ReservationController.getReservation)
+router.delete('/:id', authUserMiddleWare, ReservationController.deleteReservation)
+router.get('/:id?', authUserMiddleWare, ReservationController.getReservation)
 
 module.exports = router
